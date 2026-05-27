@@ -2,12 +2,12 @@ name: release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version string for the release (e.g. v0.1.0). Used only with manual runs; tag pushes use the tag name.'
+        description: 'Version string for the release (e.g. v0.1.0). Used only with manual runs.'
         required: true
         default: 'v0.0.0-dev'
 
@@ -33,7 +33,7 @@ jobs:
           if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
             echo "version=${{ github.event.inputs.version }}" >> "$GITHUB_OUTPUT"
           else
-            echo "version=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            echo "version=v0.1.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build release artifacts
@@ -43,6 +43,8 @@ jobs:
         if: github.event_name == 'push'
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.ver.outputs.version }}
+          name: ${{ steps.ver.outputs.version }}
           files: |
             dist/*.tar.gz
             dist/*.zip
