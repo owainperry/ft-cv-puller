@@ -1,0 +1,21 @@
+STATUS.md
+ft-cv-puller
+
+# Build artifacts
+/dist/
+/ft-cv-puller.exe
+*.test
+*.out
+
+# Downloaded candidate data — never commit
+/cvs/
+
+# Local config (contains API token)
+.ft-cv-puller
+
+# Editor / OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/
+.claude/
