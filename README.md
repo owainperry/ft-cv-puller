@@ -147,3 +147,7 @@ The `release` target produces tarballs/zips for linux, darwin, and windows (amd6
 ## Releases
 
 Every push to `main` triggers the `release` GitHub Action, which builds cross-platform binaries and publishes a GitHub Release tagged `v0.1.<run-number>`.
+
+## License
+
+Released under the [MIT License](LICENSE). Copyright (c) 2026 Quantifi Solutions Inc. Quantifi Solutions Inc. accepts no liability for this software.
